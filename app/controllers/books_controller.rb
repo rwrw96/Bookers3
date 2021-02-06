@@ -15,11 +15,9 @@ class BooksController < ApplicationController
   def create
     book = Book.new(title: params[:title], body: params[:body])
     if book.save
-      redirect_to book_path(book.id)
-      flash[:notice] = "Book was successfully created."
+      redirect_to book_path(book.id) , notice:"Book was successfully created."
     else
-      flash[:notice] = "error"
-      redirect_to books_path
+      redirect_to books_path , notice:"error"
     end
   end
 
@@ -30,19 +28,16 @@ class BooksController < ApplicationController
   def update
     book = Book.find(params[:id])
      if book.update(books_params)
-      redirect_to book_path(book.id)
-      flash[:notice] = "Book was successfully created."
+      redirect_to book_path(book.id) , notice:"Book was successfully created."
      else
-      flash[:notice] = "error"
-      redirect_to edit_book_path
+      redirect_to edit_book_path , notice:"error"
      end
   end
 
   def destroy
     book = Book.find(params[:id])
     if book.destroy
-    redirect_to "/books"
-    flash[:notice] = "Book was successfully created."
+    redirect_to "/books" , notice:"Book was successfully created."
     end
   end
 

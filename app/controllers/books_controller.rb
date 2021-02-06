@@ -4,17 +4,18 @@ class BooksController < ApplicationController
   end
 
   def show
-    @books = Book.find(params[:id])
+    @book = Book.find(params[:id])
   end
 
   def new
     @book = Book.new(books_params)
+    @books = Book.all
   end
 
   def create
-    books = Book.new(title: params[:title], body: params[:body])
-    if books.save
-      redirect_to book_path(books.id)
+    book = Book.new(title: params[:title], body: params[:body])
+    if book.save
+      redirect_to book_path(book.id)
       flash[:notice] = "Book was successfully created."
     else
       flash[:notice] = "error"
@@ -23,13 +24,13 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @books = Book.find(params[:id])
+    @book = Book.find(params[:id])
   end
 
   def update
-    books = Book.find(params[:id])
-     if books.update(books_params)
-      redirect_to book_path(books.id)
+    book = Book.find(params[:id])
+     if book.update(books_params)
+      redirect_to book_path(book.id)
       flash[:notice] = "Book was successfully created."
      else
       flash[:notice] = "error"
@@ -38,8 +39,8 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    books = Book.find(params[:id])
-    if books.destroy
+    book = Book.find(params[:id])
+    if book.destroy
     redirect_to "/books"
     flash[:notice] = "Book was successfully created."
     end

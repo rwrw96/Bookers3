@@ -1,0 +1,10 @@
+<%= flash[:notice] %>
+
+<p>Titile: <%= @books.title %></p>
+
+
+<p>Body: <%= @books.body %></p>
+
+
+<%= link_to "edit", edit_book_path %>
+<a href="#" onclick="history.back(); return false;">back</a>

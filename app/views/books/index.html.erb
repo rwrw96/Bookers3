@@ -1,0 +1,36 @@
+<h1>Books</h1>
+<h4>Title                Body</h4>
+<table>
+    <td class = bookers>
+      <% @books.each do |book| %>
+      <div class =bool.title>
+        <tr><%= book.title %></tr>
+        <tr><%= book.body %></tr>
+        <tr><%= link_to "show" , book_path(book.id) %></tr>
+        <tr><%= link_to "edit" , edit_book_path(book.id) %></tr>
+        <tr><%= link_to "delete" , book_path(book.id) ,  method: :delete %></tr>
+      <% end %>
+      </div>
+    </td>
+  </tbody>
+</table>
+
+<%= flash[:notice] %>
+<h2>New Book</h2>
+<div class = title>
+    <%= form_with model:@booker ,  local:true do |f| %>
+        <label>Title</label>
+</div>
+    <div class = field>
+        <%= f.text_field :title %>
+    </div>
+<div class = body>
+        <label>Body</label>
+    <div class = field>
+        <%= f.text_area :body %>
+    </div>
+</div>
+<div class = create>
+        <%= f.submit "Create Book" %>
+    <% end %>
+</div>

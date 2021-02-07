@@ -1,5 +1,4 @@
 <h1>Books</h1>
-<%= flash[:notice] %>
 <table>
     <thead>
         <th>title</th>
@@ -21,7 +20,17 @@
 
 
 <h2>New Book</h2>
-    <%= form_for(@book) do |f| %>
+    <%= form_with model:@book , local:true do |f| %>
+    <% if @book.errors.any? %>
+      <ul>
+          <li>error</li>
+        <% @book.errors.full_messages.each do |message| %>
+          
+          <li><%= message %></li>
+        <% end %>  
+       </ul>
+    <% end %>
+     
     <h4>Title</h4>
     <%= f.text_field :title %>
     <h4>Body</h4>
